@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        /* html{
+            background-color: #000000;
+        } */
+
+
+        /* LOADER */
+        body {
+            width: 100vw;
+            height: 100vh;
+            font-family: "Aeonik_OVERVIEW";
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .loading-screen {
+            z-index: 100000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: #fff;
+            pointer-events: none;
+        }
+
+        .counter {
+            position: fixed;
+            left: 50px;
+            bottom: 50px;
+            display: flex;
+            height: 100px;
+            font-size: 100px;
+            line-height: 102px;
+            clip-path: polygon(0 0, 100% 0, 100% 100px, 0 100px);
+            font-weight: 400;
+        }
+
+        .counter-1,
+        .counter-2,
+        .counter-3 {
+            position: relative;
+            top: -15px;
+        }
+
+        .num1offset1 {
+            position: relative;
+            right: -6px;
+        }
+
+        .num1offset2 {
+            position: relative;
+            right: -10px;
+        }
+
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 50px;
+            transform: translate(-50%, -50%);
+            display: flex;
+            background: rgb(80, 80, 80);
+        }
+
+        .loader-1 {
+            position: relative;
+            background: #fff;
+            width: 200px;
+        }
+
+        .loader-2 {
+            position: relative;
+            width: 100px;
+            background: #ffffff;
+        }
+
+        .bar {
+            height: 50px;
+        }
+
+        .website-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .h1 {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 80px;
+            z-index: 10;
+        }
+
+        .header .h1 h1 {
+            text-align: center;
+            position: relative;
+            top: 80px;
+            margin: 0 10px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .header-revealer {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .header-revealer:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 105%;
+            height: 0%;
+            background: #ffffff;
+            top: 80px;
+        }
+
+        .percent {
+            margin-top: -13px;
+            margin-left: 5px;
+            font-size: 70px;
+        }
+
+
+
+
+
+
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .signupicons {
+            width: 25px;
+            margin: 0px 12px;
+            margin-top: 15px;
+            box-shadow: 0 0 20px 0 #7f7f7f3d;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .body {
+            align-items: center;
+            display: flex;
+            /* justify-content: center; */
+            flex-direction: column;
+            font-family: 'monserrat', sans-serif;
+            min-height: 100%;
+            margin: 8.2%;
+            /* width: 100px; */
+        }
+
+        .container {
+            position: relative;
+            width: 768px;
+            max-width: 100%;
+            min-height: 480px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+                0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        .sign-up,
+        .sign-in {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            transition: all 0.6 ease-in-out;
+        }
+
+        .sign-up {
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .sign-in {
+            width: 50%;
+            z-index: 2;
+        }
+
+        .sign-in h2,
+        .sign-up h2 {
+            margin-bottom: 20px;
+            /* font-size: 50px; */
+            /* font-weight: 800; */
+        }
+
+        form {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        p {
+            font-size: 14px;
+            font-weight: 100;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            margin: 15px 0 20px;
+        }
+
+        input {
+            background: #eee;
+            padding: 12px 15px;
+            margin: 8px 15px;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        a {
+            color: #333;
+            font-size: 14px;
+            text-decoration: none;
+            margin: 15px 0;
+        }
+
+        .overlay-right button,
+        .overlay-left button {
+            /* sign in button */
+            color: #fff;
+            background: #000000;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 55px;
+            margin: 20px;
+            border-radius: 20px;
+            border: 1px solid #4f4847;
+
+            outline: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+            cursor: pointer;
+        }
+
+        button {
+            /* sign in button */
+            color: #fff;
+            background: #000000;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 24px;
+            margin: 20px;
+            border-radius: 20px;
+            border: 1px solid #4f4847;
+
+            outline: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+            cursor: pointer;
+        }
+
+        button:active {
+            transform: scale(0.90);
+        }
+
+        #signIn {
+            background-color: transparent;
+            border: 2px solid #000000;
+            color: #000000;
+        }
+
+        #signUp {
+            background-color: transparent;
+            border: 2px solid #fff;
+        }
+
+        .container.right-panel-active .sign-in {
+            transform: translateX(100%);
+        }
+
+        .container.right-panel-active .sign-up {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+        }
+
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.6s ease-in-out;
+            z-index: 100;
+        }
+
+        .container.right-panel-active .overlay-container {
+            transform: translateX(-100%);
+        }
+
+        .overlay {
+            position: relative;
+            color: #fff;
+            background: #0d8334;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            background: linear-gradient(to right, #ffffff, #000000);
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .container.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+
+        .overlay-left,
+        .overlay-right {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+
+        }
+
+        .overlay-left {
+            transform: translateX(-20%);
+        }
+
+        .overlay-left h2,
+        .overlay-left p {
+            color: black;
+        }
+
+        .overlay-right {
+            right: 0;
+            transform: translateX(0);
+        }
+
+        .container.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+
+        .container.right-panel-active .overlay-right {
+            transform: translateX(20%);
+        }
+
+        .overlay-right h2,
+        .overlay-left h2 {
+            font-size: 50px;
+            font-weight: 700;
+        }
+
+        .overlay-right p,
+        .overlay-left p {
+            /* font-size: 20px; */
+            /* font-weight:; */
+            margin-top: 40px;
+        }
+
+        .loginbtnbox {
+            display: flex;
+        }
+
+        .b1 {
+            padding: 12px 26px;
+        }
+    </style>
+</head>
+
+<!-- style="background-image: url(''); background-size: contain;" -->
+
+<body style="background-color: #000000;">
+
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-1 bar"></div>
+            <div class="loader-2 bar"></div>
+        </div>
+
+        <div class="counter">
+            <div class="counter-1 digit">
+                <div class="num">0</div>
+                <div class="num num1offset1">1</div>
+            </div>
+            <div class="counter-2 digit">
+                <div class="num">0</div>
+                <div class="num num1offset2">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+                <div class="num">0</div>
+            </div>
+            <div class="counter-3 digit">
+                <div class="num">0</div>
+                <div class="num">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+            </div>
+            <div class="percent">%</div>
+        </div>
+    </div>
+
+
+
+
+    <div class="body" style="background-color:transparent">
+        <div class="container" id="main">
+            <div class="sign-up">
+                <form action="#" id="a1">
+                    <h2>Create Account</h2>
+                    <input type="text" placeholder="Name" required="" id="newname">
+                    <input type="email" id="newemail" placeholder="Email" required="">
+                    <input type="password" id="newpswd" placeholder="Password" required="">
+                    <div class="loginbtnbox">
+                        <button type="button" onclick="addData()">Sign Up</button>
+                        <button type="reset" class="">reset</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="sign-in">
+                <form action="#">
+                    <h2>Sign In</h2>
+                    <input type="email" id="oldemail" placeholder="Email" required="">
+                    <input type="password" id="oldpswd" placeholder="Password" required="">
+                    <div class="loginbtnbox">
+                        <button type="button" onclick="checkData()">Sign In</button>
+                        <button type="reset" class="">reset</button>
+                    </div>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-left">
+                        <h2>Welcome Back!</h2>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-right">
+                        <h2>Hello, Friend</h2>
+                        <p>Enter Your personal details and start journey with us</p>
+                        <button id="signUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+        integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"
+        integrity="sha512-AMl4wfwAmDM1lsQvVBBRHYENn1FR8cfOTpt8QVbb/P55mYOdahHD4LmHM1W55pNe3j/3od8ELzPf/8eNkkjISQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
+        integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"
+        integrity="sha512-tHvUcUQYi35zApvAa5TNR3fNhBQkVtkmWKfacnpxmix4/VTGz1lGjIVyLMp7gLgAvg+aKJjnVKokXJNS5GZ+/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+
+
+    <script>
+        // Utility function to check login status
+        function checkLoginStatus() {
+            var userEmail = localStorage.getItem('useremail');
+            var userPswd = localStorage.getItem('userpswd');
+            return userEmail && userPswd;
+        }
+
+        // Clear input fields function
+        function clearInputFields() {
+            document.getElementById('newname').value = '';
+            document.getElementById('newemail').value = '';
+            document.getElementById('newpswd').value = '';
+            document.getElementById('oldemail').value = '';
+            document.getElementById('oldpswd').value = '';
+        }
+
+        // Handle DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function () {
+            clearInputFields(); // Clear input fields on page load
+            if (checkLoginStatus()) {
+                console.log("User is logged in.");
+            } else {
+                console.log("User is not logged in.");
+            }
+        });
+
+        // Toggle between sign-up and sign-in forms
+        document.getElementById('signUp').addEventListener('click', () => {
+            document.getElementById('main').classList.add("right-panel-active");
+            clearInputFields(); // Clear input fields when switching to sign-up form
+        });
+
+        document.getElementById('signIn').addEventListener('click', () => {
+            document.getElementById('main').classList.remove("right-panel-active");
+            clearInputFields(); // Clear input fields when switching to sign-in form
+        });
+
+        // Add user data function
+        function addData() {
+            var name = document.getElementById('newname').value;
+            var email = document.getElementById('newemail').value;
+            var pswd = document.getElementById('newpswd').value;
+
+            // Validate input
+            if (!name || !email || !pswd) {
+                alert("All fields are required!");
+                return;
+            }
+
+            // Retrieve existing user records from localStorage
+            let user_records = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Check for duplicate email
+            if (user_records.some(user => user.email === email)) {
+                alert("Duplicate Data");
+            } else {
+                // Add new user to the records
+                user_records.push({ name: name, email: email, password: pswd });
+                // Save updated user records back to localStorage
+                localStorage.setItem("users", JSON.stringify(user_records));
+                // Optional: Store current user information separately
+                localStorage.setItem('username', name);
+                localStorage.setItem('useremail', email);
+                localStorage.setItem('userpswd', pswd);
+                // Clear the input fields
+                clearInputFields();
+                // Redirect to main.html
+                window.location.href = 'ss.html'; // Ensure the path is correct
+            }
+        }
+
+        // Check user data function
+        function checkData() {
+            var enteremail = document.getElementById('oldemail').value;
+            var enterpswd = document.getElementById('oldpswd').value;
+
+            // Retrieve user data array from local storage
+            let user_records = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Check if entered email and password match any stored user
+            if (user_records.some(user => user.email === enteremail && user.password === enterpswd)) {
+                alert("Login Successful");
+                let current_user = user_records.filter((v) => {
+                    return v.email == enteremail && v.password == enterpswd;
+                })[0];
+
+                localStorage.setItem("name", current_user.name);
+                localStorage.setItem("email", current_user.email);
+
+                // Clear the input fields
+                clearInputFields();
+                // Redirect to main.html
+                window.location.href = 'main.html'; // Ensure the path is correct
+            } else {
+                alert("Invalid email or password");
+            }
+        }
+    </script>
+</body>
+
+
+
+
+
+
+
+
+</html>

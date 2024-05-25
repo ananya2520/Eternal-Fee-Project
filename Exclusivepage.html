@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Watches</title>
+    <!-- <link rel="stylesheet" href="../style.css">  -->
+    <style>
+        /* header {
+            width: 1200px;
+            max-width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 50px 1fr 50px;
+            grid-template-rows: 50px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+        }
+
+        header .logo {
+            font-weight: bold;
+        }
+
+        header .menu {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-weight: 500;
+        } */
+
+        /* css slider */
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        body {
+            font-family: Poppins;
+            margin: 0;
+            background-color: #010101;
+            color: #eee;
+        }
+
+        svg {
+            width: 25px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.6s;
+            padding: 25px 100px;
+            z-index: 1000;
+        }
+
+        header.sticky {
+            padding: 5px 100px;
+            background: #000000;
+        }
+
+        header .logo1 {
+            position: relative;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.6s;
+        }
+
+        header ul {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header ul li {
+            position: relative;
+            list-style: none;
+        }
+
+        header ul li a {
+            font-family: "Roboto Condensed", sans-serif;
+            position: relative;
+            margin: 0 15px;
+            color: #fff;
+            letter-spacing: 2px;
+            font-weight: 500px;
+            transition: 0.6s;
+            text-decoration: none;
+        }
+
+        header.sticky .logo1,
+        header.sticky ul li a {
+            color: #ffffff;
+        }
+
+
+
+        .slider {
+            height: 100vh;
+            position: relative;
+        }
+
+        .slider .list .item {
+            position: absolute;
+            inset: 0 0 0 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: .5s;
+        }
+
+        .slider .list .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider .list .item::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-image: linear-gradient(to top, #000 1%, transparent);
+        }
+
+        .slider .list .item .content {
+            font-family: Poppins;
+            position: absolute;
+            left: 10%;
+            top: 20%;
+            width: 500px;
+            max-width: 80%;
+            z-index: 1;
+        }
+
+        .slider .list .item .content p:nth-child(1) {
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            font-family: Poppins;
+        }
+
+        .slider .list .item .content h2 {
+            font-family: Poppins;
+            font-size: 100px;
+            margin: 0;
+        }
+
+        .slider .list .item.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        @keyframes showContent {
+            to {
+                transform: translateY(0);
+                filter: blur(0);
+                opacity: 1;
+            }
+        }
+
+        .slider .list .item.active p:nth-child(1),
+        .slider .list .item.active h2,
+        .slider .list .item.active p:nth-child(3) {
+            transform: translateY(30px);
+            filter: blur(20px);
+            opacity: 0;
+            animation: showContent .5s .7s ease-in-out 1 forwards;
+        }
+
+        .slider .list .item.active h2 {
+            animation-delay: 1s;
+        }
+
+        .slider .list .item.active p:nth-child(3) {
+            animation-duration: 1.3s;
+        }
+
+        .arrows {
+            position: absolute;
+            top: 30%;
+            right: 50px;
+            z-index: 100;
+        }
+
+        .arrows button {
+            background-color: #eee5;
+            border: none;
+            font-family: monospace;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            font-size: x-large;
+            color: #eee;
+            transition: .5s;
+        }
+
+        .arrows button:hover {
+            background-color: #eee;
+            color: black;
+        }
+
+        .thumbnail {
+            position: absolute;
+            bottom: 0px;
+            z-index: 11;
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            height: 250px;
+            padding: 0 50px;
+            box-sizing: border-box;
+            overflow: auto;
+            justify-content: center;
+        }
+
+        .thumbnail::-webkit-scrollbar {
+            width: 0;
+        }
+
+        .thumbnail .item {
+            width: 150px;
+            height: 220px;
+            filter: brightness(.5);
+            transition: .5s;
+            flex-shrink: 0;
+        }
+
+        .thumbnail .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .thumbnail .item.active {
+            filter: brightness(1.3);
+        }
+
+        .thumbnail .item .content {
+            position: absolute;
+            inset: auto 10px 10px 10px;
+        }
+
+        @media screen and (max-width: 678px) {
+            .thumbnail {
+                justify-content: start;
+            }
+
+            .slider .list .item .content h2 {
+                font-size: 60px;
+            }
+
+            .arrows {
+                top: 10%;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            /* font-family: "Aeonik_OVERVIEW"; */
+            overflow-x: hidden;
+        }
+
+        .loading-screen {
+            z-index: 100000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: #fff;
+            pointer-events: none;
+        }
+
+        .counter {
+            position: fixed;
+            left: 50px;
+            bottom: 50px;
+            display: flex;
+            height: 100px;
+            font-size: 100px;
+            line-height: 102px;
+            clip-path: polygon(0 0, 100% 0, 100% 100px, 0 100px);
+            font-weight: 400;
+        }
+
+        .counter-1,
+        .counter-2,
+        .counter-3 {
+            position: relative;
+            top: -15px;
+        }
+
+        .num1offset1 {
+            position: relative;
+            right: -6px;
+        }
+
+        .num1offset2 {
+            position: relative;
+            right: -10px;
+        }
+
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 50px;
+            transform: translate(-50%, -50%);
+            display: flex;
+            background: rgb(80, 80, 80);
+        }
+
+        .loader-1 {
+            position: relative;
+            background: #fff;
+            width: 200px;
+        }
+
+        .loader-2 {
+            position: relative;
+            width: 100px;
+            background: #ffffff;
+        }
+
+        .bar {
+            height: 50px;
+        }
+
+        .website-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .h1 {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 80px;
+            z-index: 10;
+        }
+
+        .header .h1 h1 {
+            text-align: center;
+            position: relative;
+            top: 80px;
+            margin: 0 10px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .header-revealer {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .header-revealer:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 105%;
+            height: 0%;
+            background: #ffffff;
+            top: 80px;
+        }
+
+        .percent {
+            margin-top: -13px;
+            margin-left: 5px;
+            font-size: 70px;
+        }
+
+        .blk {
+            color: black;
+        }
+
+        .logo1 img {
+            width: 40px;
+        }
+
+
+
+
+        
+/* * {
+    font-family: 'Poppins', sans-serif;
+  } */
+  body{
+    background-color: black;
+  }
+
+  .navbar {
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .dropbtn {
+    letter-spacing: 1.8px;
+  }
+
+  /* .navbar a:hover, */
+  /* .dropdown:hover .dropbtn { */
+    /* background-color: rgb(255, 255, 255); */
+  /* } */
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    /* background-color: #f9f9f9; */
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
+    z-index: 1;
+  }
+
+  .dropdown-content a,
+  .dropdown-content p, 
+  .dropdown-content h4 {
+  cursor: pointer;
+    float: none;
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .dropdown-content p:hover{
+    /* background-color: #794848; */
+    transform: scale(1.1);
+}
+
+.dropdown-content a:hover {
+    /* background-color: #974c4c; */
+    transform: scale(1.1);
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .hover li a {
+    color: rgb(255, 255, 255);
+  }
+
+  .icon-cog {
+    color: rgb(255, 255, 255);
+  }
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-1 bar"></div>
+            <div class="loader-2 bar"></div>
+        </div>
+
+        <div class="counter">
+            <div class="counter-1 digit">
+                <div class="num">0</div>
+                <div class="num num1offset1">1</div>
+            </div>
+            <div class="counter-2 digit">
+                <div class="num">0</div>
+                <div class="num num1offset2">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+                <div class="num">0</div>
+            </div>
+            <div class="counter-3 digit">
+                <div class="num">0</div>
+                <div class="num">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+            </div>
+            <div class="percent">%</div>
+        </div>
+    </div>
+
+
+    <header>
+        <a href="#" class="logo1"><img src="./Images/logo.png"></a>
+        <ul class="hover">
+            <li><a href="main.html" class="h1">HOME</a></li>
+            <li><a href="categories.html">CATEGORIES</a></li>
+            <li><a href="Exclusivepage.html">EXCLUSIVE</a></li>
+            <li><a href="watches.html">SHOP NOW</a></li>
+            <li><a href="main.html#contactus">CONTACT US</a></li>
+            <li><a href="ss.html">LOG IN</a></li>
+            <div class="dropdown">
+                <button class="dropbtn">PROFILE
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <h4>
+                    <script>
+                      document.write(localStorage.getItem("name"));
+                    </script>
+                  </h4>
+                  <a href="profilemain.html">Edit Profile</a>
+                  <p onclick="logOut()">Log Out</p>
+                </div>
+              </div>
+        </ul>
+    </header>
+
+
+    <div class="slider">
+        <div class="list">
+            <div class="item active">
+                <img src="./Images/3.avif">
+                <div class="content">
+                    <p>design</p>
+                    <h2>DATEJUST</h2>
+                    <p>
+                        Launched in 1945, the Datejust was the first self-winding waterproof chronometer wristwatch with
+                        a window displaying the date at 3 o’clock on the dial. This unique combination was further
+                        enhanced in 1953 with the magnifying effect of the Cyclops lens on the display.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/2.avif">
+                <div class="content">
+                    <p>design</p>
+                    <h2>SUBMARINER</h2>
+                    <p>
+                        Launched in 1953, the Rolex Submariner is the first divers’ wristwatch to be waterproof to a
+                        depth of 100 metres (330 feet) – now 300 metres (1,000 feet). Its major features, such as the
+                        graduated rotatable bezel, the luminescent display, the large hands and hour markers,
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/5.avif">
+                <div class="content">
+                    <p>design</p>
+                    <h2>GMT</h2>
+                    <p>
+                        The GMT-Master II is the ultimate cosmopolitan watch. With a dedicated 24-hour hand and a
+                        24-hour graduated two-colour rotatable bezel, it displays a second time zone in addition to the
+                        conventional time.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/1.avif">
+                <div class="content">
+                    <p>design</p>
+                    <h2>DAY DATE</h2>
+                    <p>
+                        If time changes all things, this minute changes them more than the others. When midnight
+                        strikes, the Day-Date forms a bridge between past and future, between what has been achieved and
+                        what remains to be lived.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/6.avif">
+                <div class="content">
+                    <p>design</p>
+                    <h2>Cosmograph</h2>
+                    <p>
+                        Launched in 1963, the Cosmograph Daytona has long since transcended its status in the world of
+                        watchmaking to become an icon. Its name, inextricably linked to the famous racetrack, as well as
+                        its graphic face, have made it a legend.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/4.avif">
+                <div class="content">
+                    <p>design</p>
+                    <h2> PERPETUAL</h2>
+                    <p>
+                        As the purest expression of Rolex’s manufacturing spirit, the Oyster Perpetual was designed for
+                        those who see the world as having boundless possibilities.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/7.avif">
+                <div class="content">
+                    <p>design</p>
+                    <h2>Yacht</h2>
+                    <p>
+                        As the purest expression of Rolex’s manufacturing spirit, the Oyster Perpetual was designed for
+                        those who see the world as having boundless possibilities.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+        <div class="thumbnail">
+            <div class="item active">
+                <img src="./Images/3.avif">
+                <div class="content blk">
+                    DATEJUST
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/2.avif">
+                <div class="content blk">
+                    SUBMARINER
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/5.avif">
+                <div class="content blk">
+                    GMT
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/1.avif">
+                <div class="content blk">
+                    DAY DATE
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/6.avif">
+                <div class="content blk">
+                    Cosmograph
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/4.avif">
+                <div class="content blk">
+                    OYSTER
+                </div>
+            </div>
+            <div class="item">
+                <img src="./Images/7.avif">
+                <div class="content blk">
+                    Yacht
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+        integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"
+        integrity="sha512-AMl4wfwAmDM1lsQvVBBRHYENn1FR8cfOTpt8QVbb/P55mYOdahHD4LmHM1W55pNe3j/3od8ELzPf/8eNkkjISQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
+        integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"
+        integrity="sha512-tHvUcUQYi35zApvAa5TNR3fNhBQkVtkmWKfacnpxmix4/VTGz1lGjIVyLMp7gLgAvg+aKJjnVKokXJNS5GZ+/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+    <script>
+        let items = document.querySelectorAll('.slider .list .item');
+        let next = document.getElementById('next');
+        let prev = document.getElementById('prev');
+        let thumbnails = document.querySelectorAll('.thumbnail .item');
+
+        // config param
+        let countItem = items.length;
+        let itemActive = 0;
+        // event next click
+        next.onclick = function () {
+            itemActive = itemActive + 1;
+            if (itemActive >= countItem) {
+                itemActive = 0;
+            }
+            showSlider();
+        }
+        //event prev click
+        prev.onclick = function () {
+            itemActive = itemActive - 1;
+            if (itemActive < 0) {
+                itemActive = countItem - 1;
+            }
+            showSlider();
+        }
+        // auto run slider
+        let refreshInterval = setInterval(() => {
+            next.click();
+        }, 5000)
+        function showSlider() {
+            // remove item active old
+            let itemActiveOld = document.querySelector('.slider .list .item.active');
+            let thumbnailActiveOld = document.querySelector('.thumbnail .item.active');
+            itemActiveOld.classList.remove('active');
+            thumbnailActiveOld.classList.remove('active');
+
+            // active new item
+            items[itemActive].classList.add('active');
+            thumbnails[itemActive].classList.add('active');
+
+            // clear auto time run slider
+            clearInterval(refreshInterval);
+            refreshInterval = setInterval(() => {
+                next.click();
+            }, 5000)
+        }
+
+        // click thumbnail
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', () => {
+                itemActive = index;
+                showSlider();
+            })
+        })
+    </script>
+</body>
+
+</html>

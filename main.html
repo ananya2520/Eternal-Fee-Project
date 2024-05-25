@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Watches</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        * {
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .signupicons {
+            width: 25px;
+            margin: 0px 12px;
+            margin-top: 15px;
+            box-shadow: 0 0 20px 0 #7f7f7f3d;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .body {
+            margin-top: 50vh;
+            background-color: #fff;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            /* background-color: #f6f5f7; */
+            font-family: 'monserrat', sans-serif;
+            min-height: 100%;
+            margin-top: 35%;
+            /* width: 100px; */
+        }
+
+        .container1 {
+            position: relative;
+            width: 768px;
+            max-width: 100%;
+            min-height: 480px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+                0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        .sign-up,
+        .sign-in {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            transition: all 0.6 ease-in-out;
+        }
+
+        .sign-up {
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .sign-in {
+            width: 50%;
+            z-index: 2;
+        }
+
+        .sign-in h2,
+        .sign-up h2 {
+            margin-bottom: 20px;
+            /* font-size: 50px; */
+            /* font-weight: 800; */
+        }
+
+        form {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+            text-align: center;
+        }
+
+        .sign-in h2,
+        .overlay-left h2,
+        .overlay-right h2,
+        .sign-up h2 {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .sign-in p,
+        .overlay-left p,
+        .overlay-right p,
+        .sign-up p {
+            font-size: 14px;
+            font-weight: 100;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            margin: 15px 0 20px;
+        }
+
+        input {
+            background: #eee;
+            padding: 12px 15px;
+            margin: 8px 15px;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        a {
+            color: #333;
+            font-size: 14px;
+            text-decoration: none;
+            /* margin: 15px 0; */
+        }
+
+        .body button {
+            /* sign in button */
+            color: #fff;
+            background: #000000;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 55px;
+            margin: 20px;
+            border-radius: 20px;
+            border: 1px solid #4f4847;
+
+            outline: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+            cursor: pointer;
+        }
+
+        button:active {
+            transform: scale(0.90);
+        }
+
+        #signIn {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        #signUp {
+            background-color: transparent;
+            border: 2px solid #fff;
+        }
+
+        .container1.right-panel-active .sign-in {
+            transform: translateX(100%);
+        }
+
+        .container1.right-panel-active .sign-up {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+        }
+
+        .overlay-container1 {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.6s ease-in-out;
+            z-index: 100;
+        }
+
+        .container1.right-panel-active .overlay-container1 {
+            transform: translateX(-100%);
+        }
+
+        .overlay {
+            position: relative;
+            color: #fff;
+            /* background: #0d8334; */
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            /* background: linear-gradient(to right, #ffffff, #000000); */
+            background: rgb(0, 0, 0);
+            background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 1) 100%);
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .container1.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+
+        .overlay-left,
+        .overlay-right {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+
+        }
+
+        .overlay-left {
+            transform: translateX(-20%);
+            /* border: 5px solid black; */
+        }
+        
+        .overlay-left h2,
+        .overlay-left p {
+            color: white;
+        }
+        
+        .overlay-right {
+            right: 0;
+            transform: translateX(0);
+            /* border: 5px solid black; */
+        }
+
+        .container1.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+
+        .container1.right-panel-active .overlay-right {
+            transform: translateX(20%);
+        }
+
+        .overlay-right h2,
+        .overlay-left h2 {
+            font-size: 50px;
+            font-weight: 700;
+        }
+
+        .overlay-right p,
+        .overlay-left p {
+            margin-top: 40px;
+        }
+
+        
+
+        .hover li:hover{
+            
+            /* transform: scale(1.1); */
+            color: aliceblue;
+        }
+
+        /* .h1:hover{
+            transition: .3s;
+            transform: scale(1.1);
+        } */
+
+        /* * {
+    font-family: 'Poppins', sans-serif;
+  } */
+  /* body{
+    background-color: black;
+  } */
+
+  .navbar {
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+
+  .dropdown p{
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .dropdown .dropbtn {
+    font-size: 14px;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    padding: 14px 16px;
+    background-color: inherit;
+    /* font-family: inherit; */
+    margin: 0;
+  }
+
+  .dropbtn {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1.8px;
+  }
+
+  /* .navbar a:hover, */
+  /* .dropdown:hover .dropbtn { */
+    /* background-color: rgb(255, 255, 255); */
+  /* } */
+
+  .dropdown-content {
+    font-family: 'Poppins', sans-serif;
+    display: none;
+    position: absolute;
+    /* background-color: #f9f9f9; */
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
+    z-index: 1;
+  }
+
+  .dropdown-content a,
+  .dropdown-content p, 
+  .dropdown-content h4 {
+  cursor: pointer;
+    float: none;
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .dropdown-content p:hover{
+    /* background-color: #794848; */
+    transform: scale(1.1);
+}
+
+.dropdown-content a:hover {
+    /* background-color: #974c4c; */
+    transform: scale(1.1);
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .hover li a {
+    color: rgb(255, 255, 255);
+  }
+
+  .icon-cog {
+    color: rgb(255, 255, 255);
+  }
+  #show{
+    margin-top:5px;
+    font-weight:700;
+    font-size:18px;
+    visibility:hidden;
+  }
+  .open{
+    visibility: visible;
+  }
+
+
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-1 bar"></div>
+            <div class="loader-2 bar"></div>
+        </div>
+
+        <div class="counter">
+            <div class="counter-1 digit">
+                <div class="num">0</div>
+                <div class="num num1offset1">1</div>
+            </div>
+            <div class="counter-2 digit">
+                <div class="num">0</div>
+                <div class="num num1offset2">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+                <div class="num">0</div>
+            </div>
+            <div class="counter-3 digit">
+                <div class="num">0</div>
+                <div class="num">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+            </div>
+            <div class="percent">%</div>
+        </div>
+    </div>
+
+
+
+    <!-- PARALLAX EFFECT -->
+    <header>
+        <a href="#" class="logo1"><img src="./Images/logo.png"></a>
+        <ul class="hover">
+            <li><a href="main.html" class="h1">HOME</a></li>
+            <li><a href="categories.html">CATEGORIES</a></li>
+            <li><a href="Exclusivepage.html">EXCLUSIVE</a></li>
+            <li><a href="watches.html">SHOP NOW</a></li>
+            <li><a href="#contactus">CONTACT US</a></li>
+            <li><a href="ss.html">LOG IN</a></li>
+            <div class="dropdown">
+                <button class="dropbtn"><p>PROFILE</p>
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <h4>
+                    <script>
+                      document.write(localStorage.getItem("name"));
+                    </script>
+                  </h4>
+                  <a href="profilemain.html">Edit Profile</a>
+                  <p onclick="logOut()">Log Out</p>
+                </div>
+              </div>
+        </ul>
+    </header>
+    <div class="one">
+        <h2 class="logo">ETERNAL</h2>
+        <p class="l1" >Roar And Finish Line</p>
+        <p class="l2">Inspired by the original motoring watches.</p>
+        <a href="./Exclusivepage.html"><button class="l3 btnn"  >Explore More</button></a>
+    </div>
+    <div class="two">
+        <h2 class="logo right" style="font-size:80px; font-weight: 900;">CLASSIC</h2>
+        <p class="l1 right" style="font-size: 40px;">Watches for dates to remember</p>
+        <p class="l2 right">Discover its creation</p>
+        <a href="./categories.html"><button class="l3 btnn" style="margin-left:1000px" >Explore More</button></a>
+    </div>
+    <div class="three">
+        <h2 class="logo right">BASICS</h2>
+        <p class="l1 right">Your go to watch for everyday purpose.</p>
+        <!-- <p class="l2 right"></p> -->
+        <a href="./Exclusivepage.html"><button class="l3 btnn" style="margin-left:1000px" >Explore More</button></a>
+    </div>
+    <div class="four">
+        <h2 class="logo">EXCLUSIVE</h2>
+        <p class="l1">Roar Across The Finish Line</p>
+        <!-- <p class="l2">Inspired by the original motoring watches.</p> -->
+        <a href="./categories.html"><button class="l3 btnn"  >Explore More</button></a>
+    </div>
+
+    <!-- FLOAtING CARDS -->
+    <div id="main1">
+        <div class="text">
+            <div class="text-img"></div>
+            <h2>Create new feature at <br><b>ROLEX</b></h2>
+            <p style="font-size:22px;">The Rolex collection offers a wide range of prestigious, high-precision timepieces, from Professional to Classic models to suit any wrist.</p>
+        </div>
+        <div class="cards" id="card-one"></div>
+        <div class="cards" id="card-two"></div>
+        <div class="cards" id="card-three"></div>
+    </div>
+
+
+    <!-- HOVERING  -->
+    <div class="bigbox">
+        <div class="hovering1">
+            <p class="hover1">
+                LAUNCHING SOON
+            </p>
+            <ul>
+                <li class="list">CREATIVE DESIGN</li>
+                <li class="list">BRANDING</li>
+                <li class="list">ANALOG</li>
+                <li class="list">PHOTOS</li>
+                <li class="list">CONTENT</li>
+            </ul>
+        </div>
+        <div class="box">
+            <img src="./Images/i17.jpg">
+            <div class="content1">
+                <div class="flex">
+                    <div class="line">
+                    </div>
+                    <p class="heading">DATE JUST</p>
+                </div>
+                <p class="text">BARRY CALLEBAUT X ANGSTRoM</p>
+            </div>
+
+        </div>
+        <div class="view">
+            <p class="view1">
+                <i>View the work</i>
+            </p>
+            <!-- <img src="./right-arrow_545682.png"> -->
+        </div>
+    </div>
+
+
+    <div class="bigbox">
+        <div class="hovering1">
+            <p class="hover1">
+                LAUNCHED
+            </p>
+            <ul>
+                <li class="list">THEME BASED</li>
+                <li class="list">BRANDING</li>
+                <li class="list">DIGITAL</li>
+                <li class="list">PHOTOS</li>
+                <li class="list">CONTENT</li>
+            </ul>
+        </div>
+        <div class="box">
+            <img src="./Images/i14.jpg">
+            <div class="content1">
+                <div class="flex">
+                    <div class="line">
+                    </div>
+                    <p class="heading">SUBMARINER</p>
+                </div>
+                <p class="text">BARRY CALLEBAUT X ANGSTRoM</p>
+            </div>
+
+        </div>
+        <div class="view">
+            <p class="view1">
+                <i>View the work</i>
+            </p>
+            <!-- <img src="./right-arrow_545682.png"> -->
+        </div>
+    </div>
+
+
+    <div class="bigbox">
+        <div class="hovering1">
+            <p class="hover1">
+                LAUNCHING SOON
+            </p>
+            <ul>
+                <li class="list">CREATIVE DIRECTION</li>
+                <li class="list">BRANDING</li>
+                <li class="list">ANALOG</li>
+                <li class="list">PHOTOS</li>
+                <li class="list">CONTENT</li>
+            </ul>
+        </div>
+        <div class="box">
+            <img src="./Images/i13.jpg">
+            <div class="content1">
+                <div class="flex">
+                    <div class="line">
+                    </div>
+                    <p class="heading">GMT-MASTER</p>
+                </div>
+                <p class="text">BARRY CALLEBAUT X ANGSTRoM</p>
+            </div>
+
+        </div>
+        <div class="view">
+            <p class="view1">
+                <i>View the work</i>
+            </p>
+            <!-- <img src="./right-arrow_545682.png"> -->
+        </div>
+    </div>
+
+    <div class="bigbox">
+        <div class="hovering1">
+            <p class="hover1">
+                BRANDING,CONTENT
+            </p>
+            <ul>
+                <li class="list">CREATIVE DIRECTION</li>
+                <li class="list">BRANDING</li>
+                <li class="list">MECHANICAL</li>
+                <li class="list">PHOTOS</li>
+                <li class="list">CONTENT</li>
+            </ul>
+        </div>
+        <div class="box">
+            <img src="./Images/i3.jpg">
+            <div class="content1">
+                <div class="flex">
+                    <div class="line">
+                    </div>
+                    <p class="heading">DAY DATE</p>
+                </div>
+                <p class="text">BARRY CALLEBAUT X ANGSTRoM</p>
+            </div>
+
+        </div>
+        <div class="view">
+            <p class="view1">
+                <i>View the work</i>
+            </p>
+            <!-- <img src="./right-arrow_545682.png"> -->
+        </div>
+    </div>
+
+
+    <!-- HORIZONTAL SCROLLBAR -->
+    <div class="horscrl" id="contactus">
+        <div class="container">
+            <nav>
+                <a href="#">Codegrid</a>
+            </nav>
+
+            <section class="wrapper-404">
+                <h2>Rolex Watches</h2>
+                <div class="card" id="card-1">
+                    <img src="./Images/age-barros-rBPOfVqROzY-unsplash.jpg" alt="" />
+                </div>
+                <div class="card" id="card-2">
+                    <img src="./Images/i10.jpg" alt="" />
+                </div>
+                <div class="card" id="card-3">
+                    <img src="./Images/i1.jpg" alt="" />
+                </div>
+                <!-- <div class="card" id="card-4">
+                    <img src="ONE.png" alt="" />
+                </div> -->
+            </section>
+
+            <section class="outro">
+                <!-- <div class="temp1"> -->
+                <!-- <div class="form1"> -->
+                <div class="body" style="background-color:transparent">
+                    <div class="container1" id="main3">
+                        <div class="sign-up">
+                            <form action="#">
+                                <h2>Contact Us</h2>
+                                <div class="icons">
+                                    <img src="./Images/icons8-facebook-48 (1).png" alt="">
+                                    <img src="./Images/icons8-instagram-48 (1).png" alt="">
+                                    <img src="./Images/icons8-linked-in-48.png" alt="">
+                                </div>
+                                <p>Phone : +1234543323 , +1234540000 </p>
+                                <p>Email : rolex.22@gmail.com</p>
+                                <p>Website : www.rolex.com</p>
+                            </form>
+                        </div>
+
+                        <div class="sign-in">
+                            <form id="contactForm" action="#" onsubmit="handleSubmit(event)">
+                                <h2>Get In Touch</h2>
+                                <input type="text" id="name" placeholder="Name" required>
+                                <input type="email" id="email" placeholder="Email" required>
+                                <input type="text" id="subject" placeholder="Subject" required>
+                                <input type="text" id="message" placeholder="Enter Message" required style="height:15vh">
+                                <button type="submit">Submit</button>
+                                <!-- <p id="show" onclick="showText()">Your response has been submitted.</p> -->
+                            </form>
+                        </div>
+                        
+                        
+                        <div class="overlay-container1">
+                            <div class="overlay">
+                                <div class="overlay-left">
+                                    <h2>Get In Touch</h2>
+                                    <p>For any enquiry regarding our products send us messages.</p>
+                                    <button id="signIn">Send Message</button>
+                                </div>
+                                <div class="overlay-right">
+                                    <h2>Contact Us</h2>
+                                    <p>For more details you can contact us here.</p>
+                                    <button id="signUp">Contact</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+                <!-- </div> -->
+            </section>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+        integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"
+        integrity="sha512-AMl4wfwAmDM1lsQvVBBRHYENn1FR8cfOTpt8QVbb/P55mYOdahHD4LmHM1W55pNe3j/3od8ELzPf/8eNkkjISQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
+        integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"
+        integrity="sha512-tHvUcUQYi35zApvAa5TNR3fNhBQkVtkmWKfacnpxmix4/VTGz1lGjIVyLMp7gLgAvg+aKJjnVKokXJNS5GZ+/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+
+    <script>
+        const signUpButton = document.getElementById('signUp')
+        const signInButton = document.getElementById('signIn')
+        const main3 = document.getElementById('main3')
+
+        signUpButton.addEventListener('click', () => {
+            main3.classList.add("right-panel-active");
+        })
+        signInButton.addEventListener('click', () => {
+            main3.classList.remove("right-panel-active");
+        })
+
+        function handleSubmit(event) {
+        event.preventDefault();
+        alert('Your query has been sent.');
+        document.getElementById('contactForm').reset();
+    }
+        
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="checkout.css">
+    <script defer src="checkout.js"></script>
+    <title>Checkout</title>
+    <style>
+        .popup a button{
+            text-decoration: none;        
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <ul>
+            <li><a href="watches.html">SHOP</a></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <div class="box1">
+            <div class="listcart" id="cart-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+            <div class="subtotal">
+                <p>SUBTOTAL : </p>
+                <p id="subtotal-price">$0.00</p>
+                <p class="grey">Free Delivery Eligible</p>
+            </div>
+        </div>
+        <form action="">
+            <div class="row">
+                <div class="col">
+                    <h3 class="title">Billing Address</h3>
+                    <div class="inputBox">
+                        <span>Full Name:</span>
+                        <input type="text" id="fullName" placeholder="John Doe">
+                    </div>
+                    <div class="inputBox">
+                        <span>Email:</span>
+                        <input type="email" id="email" placeholder="example@example.com">
+                    </div>
+                    <div class="inputBox">
+                        <span>Address:</span>
+                        <input type="text" id="address" placeholder="Room - Street - Locality">
+                    </div>
+                    <div class="flex">
+                        <div class="inputBox">
+                            <span>State:</span>
+                            <input type="text" id="state" placeholder="India">
+                        </div>
+                        <div class="inputBox">
+                            <span>Zip Code:</span>
+                            <input type="text" id="pincode" placeholder="123 456">
+                        </div>
+                    </div>
+                    <div class="inputBox">
+                        <span>Alternate Address:</span>
+                        <input type="text" id="city" placeholder="Mumbai">
+                    </div>
+                </div>
+                
+                <div class="col">
+                    <h3 class="title">payment</h3>
+                    <div class="inputBox">
+                        <span>cards accepted :</span>
+                        <img src="./Images/card_img.png" alt="">
+                    </div>
+                    <div class="inputBox">
+                        <span>name on card :</span>
+                        <input type="text" placeholder="mr. john deo">
+                    </div>
+                    <div class="inputBox">
+                        <span>credit card number :</span>
+                        <input type="number" placeholder="1111-2222-3333-4444">
+                    </div>
+                    <div class="inputBox">
+                        <span>exp month :</span>
+                        <input type="text" placeholder="january">
+                    </div>
+                    <div class="flex">
+                        <div class="inputBox">
+                            <span>exp year :</span>
+                            <input type="number" placeholder="2022">
+                        </div>
+                        <div class="inputBox">
+                            <span>CVV :</span>
+                            <input type="text" placeholder="1234">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fillform">
+                <!-- <input type="submit" value="Checkout" class="submit-btn"> -->
+                <button class="button111 btn" onclick="openPopup()">CHECKOUT</button>
+                <button class="button11">GETINFO</button>
+               
+            </div>
+            <div class="popup" id="popup">
+                <img src="./Images/404-tick.jpg" alt="">
+                <h2>Thank You</h2>
+                <p>Your order has been placed successfully</p>
+                <a href="main.html"><button type="button" class="button11" onclick="closePopup()">OK</button></a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let popup=document.getElementById("popup");
+        function openPopup(){
+            popup.classList.add("open-popup");
+        }
+        function closePopup(){
+            popup.classList.remove("open-popup");
+        }
+    </script>
+</body>
+</html>

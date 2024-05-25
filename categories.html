@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Watches</title>
+    <link rel="stylesheet" href="categories.css">
+    <style>
+        .f1{
+    width: 100%;
+    height: 5vh;
+    background-color: white;
+}
+
+        body {
+    width: 100vw;
+    height: 100vh;
+    font-family: "Aeonik_OVERVIEW";
+    /* font-family: 'Poppins', sans-serif; */
+    overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+.loading-screen {
+    z-index: 100000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    pointer-events: none;
+}
+
+.counter {
+    position: fixed;
+    left: 50px;
+    bottom: 50px;
+    display: flex;
+    height: 100px;
+    font-size: 100px;
+    line-height: 102px;
+    clip-path: polygon(0 0, 100% 0, 100% 100px, 0 100px);
+    font-weight: 400;
+}
+
+.counter-1,
+.counter-2,
+.counter-3 {
+    position: relative;
+    top: -15px;
+}
+
+.num1offset1 {
+    position: relative;
+    right: -6px;
+}
+
+.num1offset2 {
+    position: relative;
+    right: -10px;
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background: rgb(80, 80, 80);
+}
+
+.loader-1 {
+    position: relative;
+    background: #fff;
+    width: 200px;
+}
+
+.loader-2 {
+    position: relative;
+    width: 100px;
+    background: #ffffff;
+}
+
+.bar{
+    height: 50px;
+}
+
+.website-content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.h1{
+    display: flex;
+}
+
+h1{
+    font-size: 80px;
+    z-index: 10;
+}
+
+.header .h1 h1{
+  text-align: center;
+  position: relative;
+  top: 80px;
+  margin: 0 10px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.header-revealer{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.header-revealer:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 105%;
+    height: 0%;
+    background: #ffffff;
+    top: 80px;
+}
+
+.percent{
+    margin-top: -13px;
+    margin-left: 5px;
+    font-size: 70px;
+}
+
+
+
+/* * {
+    font-family: 'Poppins', sans-serif;
+  } */
+  /* body{
+    background-color: black;
+  } */
+
+  .navbar {
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .dropbtn {
+    letter-spacing: 1.8px;
+  }
+
+  /* .navbar a:hover, */
+  /* .dropdown:hover .dropbtn { */
+    /* background-color: rgb(255, 255, 255); */
+  /* } */
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    /* background-color: #f9f9f9; */
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
+    z-index: 1;
+  }
+
+  .dropdown-content a,
+  .dropdown-content p, 
+  .dropdown-content h4 {
+  cursor: pointer;
+    float: none;
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .dropdown-content p:hover{
+    /* background-color: #794848; */
+    transform: scale(1.1);
+}
+
+.dropdown-content a:hover {
+    /* background-color: #974c4c; */
+    transform: scale(1.1);
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .hover li a {
+    color: rgb(255, 255, 255);
+  }
+
+  .icon-cog {
+    color: rgb(255, 255, 255);
+  }
+
+    </style>
+</head>
+<body>
+
+
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-1 bar"></div>
+            <div class="loader-2 bar"></div>
+        </div>
+
+        <div class="counter">
+            <div class="counter-1 digit">
+                <div class="num">0</div>
+                <div class="num num1offset1">1</div>
+            </div>
+            <div class="counter-2 digit">
+                <div class="num">0</div>
+                <div class="num num1offset2">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+                <div class="num">0</div>
+            </div>
+            <div class="counter-3 digit">
+                <div class="num">0</div>
+                <div class="num">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+            </div>
+            <div class="percent">%</div>
+        </div>
+    </div>
+
+
+
+    
+    <header>
+        <a href="#" class="logo1"><img src="./Images/logo.png"></a>
+        <ul class="hover">
+            <li><a href="main.html" class="h1">HOME</a></li>
+            <li><a href="categories.html">CATEGORIES</a></li>
+            <li><a href="Exclusivepage.html">EXCLUSIVE</a></li>
+            <li><a href="watches.html">SHOP NOW</a></li>
+            <li><a href="main.html#contactus">CONTACT US</a></li>
+            <li><a href="ss.html">LOG IN</a></li>
+            <div class="dropdown">
+                <button class="dropbtn">PROFILE
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <h4>
+                    <script>
+                      document.write(localStorage.getItem("name"));
+                    </script>
+                  </h4>
+                  <a href="profilemain.html">Edit Profile</a>
+                  <p onclick="logOut()">Log Out</p>
+                </div>
+              </div>
+        </ul>
+    </header>
+
+
+
+    <div class="container">
+        <div class="row" id="row-1">
+            <div class="col">
+                <div class="img-container right">
+                    <img src="./Images/rolex1.avif" alt="">
+                    <!-- <p>Image alt</p> -->
+                </div>
+            </div>
+            <div class="col img-container left">
+                <h2 class="head1">Datejust 36</h2>
+                <p class="text">Oyster , 36mm</p>
+                <p class="text"> Oystersteel and white gold</p>
+            </div>
+        </div>
+        <div class="row" id="row-2">
+                <div class="col img-container ">
+                    <p class="head1">SUBMARINER</p>
+                    <p class="text">Monitor Diving Time</p>
+                    <p class="text">Chromalight Display</p>
+                </div>
+            
+            <div class="col">
+                <div class="img-container left">
+                    <img src="./Images/rolex2.avif" alt="">
+                    <!-- <p>Image alt</p> -->
+                </div>
+            </div>
+        </div>
+        <div class="row" id="row-3">
+            <div class="col">
+                <div class=" img-container right">
+                    <img src="./Images/rolex3.avif" alt="">
+                    <!-- <p>Image alt</p> -->
+                </div>
+            </div>
+            <div class="col img-container ">
+                <p class="head1">GMT</p>
+                <p class="text">Robust & Functional</p>
+                <p class="text"> Oystersteel and white gold</p>
+            </div>
+        </div>
+        <div class="row" id="row-4">
+            <div class="col img-container right">
+                <p class="head1">DAY DATE</p>
+                <p class="text">Oyster , 36mm</p>
+                <p class="text"> Oystersteel and white gold</p>
+            </div>
+            <div class="col">
+                <div class="img-container left">
+                    <img src="./Images/rolex4.avif" alt="">
+                    <!-- <p>Image alt</p> -->
+                </div>
+            </div>
+        </div>
+        <div class="row" id="row-5">
+            <div class="col">
+                <div class="img-container right">
+                    <img src="./Images/rolex5.avif" alt="">
+                    <!-- <p>Image alt</p> -->
+                </div>
+            </div>
+            <div class="col img-container ">
+                <p class="head1">COSMO GRAPH</p>
+                <p class="text">Chrono Graph</p>
+                <p class="text"> Oystersteel and white gold</p>
+            </div>
+        </div>
+        <div class="row" id="row-6">
+            <div class="col img-container right">
+                <p class="head1">Oyster</p>
+                <p class="text">Oyster , 36mm</p>
+                <p class="text"> Oystersteel and white gold</p>
+            </div>
+            <div class="col">
+                <div class="img-container left">
+                    <img src="./Images/rolex6.avif" alt="">
+                    <!-- <p>Image alt</p> -->
+                </div>
+            </div>
+        </div>
+        <div class="row" id="row-7">
+            <div class="col">
+                <div class="img-container right">
+                    <img src="./Images/rolex7.avif" alt="">
+                    <!-- <p>Image alt</p> -->
+                </div>
+            </div>
+            <div class="col img-container ">
+                <p class="head1">YACHT GT</p>
+                <p class="text">Marine Chronometer</p>
+                <p class="text"> Oystersteel and white gold</p>
+            </div>
+        </div>
+        <div class="row" id="row-8">
+            <div class="col img-container right">
+                <p class="head1">SEA DWELLER</p>
+                <p class="text">Singular Working</p>
+                <p class="text"> Oystersteel and white gold</p>
+            </div>
+            <div class="col">
+                <div class="img-container left">
+                    <img src="./Images/rolex8.avif" alt="">
+                    <!-- <p>Image alt</p> -->
+                </div>
+            </div>
+        </div>
+        <div class="row" id="row-9">
+            <div class="col">
+                <div class="img-container right">
+                    <img src="./Images/rolex9.avif" alt="">
+                    <!-- <p>Image alt</p> -->
+                </div>
+            </div>
+            <div class="col img-container ">
+                <p class="head1">DEEP SEA</p>
+                <p class="text">Oyster , 36mm</p>
+                <p class="text"> Oystersteel and white gold</p>
+            </div>
+        </div>
+        <div class="row" id="row-10">
+            <div class="col img-container right">
+                <p class="head1">AIR KING</p>
+                <p class="text">Oyster , 36mm</p>
+                <p class="text"> Oystersteel and white gold</p>
+            </div>
+            <div class="col">
+                <div class="img-container left">
+                    <img src="./Images/rolex10.avif" alt="">
+                    <!-- <p>Image alt</p> -->
+                </div>
+            </div>
+        </div>
+            <!-- <div class="whitespace"> -->
+
+            
+   
+</div>
+</div>
+    <!-- <div class="f1">
+dfghjk
+    </div> -->
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"
+integrity="sha512-AMl4wfwAmDM1lsQvVBBRHYENn1FR8cfOTpt8QVbb/P55mYOdahHD4LmHM1W55pNe3j/3od8ELzPf/8eNkkjISQ=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
+integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"
+integrity="sha512-tHvUcUQYi35zApvAa5TNR3fNhBQkVtkmWKfacnpxmix4/VTGz1lGjIVyLMp7gLgAvg+aKJjnVKokXJNS5GZ+/g=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="script.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    function isInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    const rows = document.querySelectorAll(".row");
+    rows.forEach((row) => {
+        if (isInViewport(row)) {
+            const img = row.querySelector("img");
+            if (row.querySelector(".left")) {
+                gsap.to(img, {
+                    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+                });
+            } else {
+                gsap.to(img, {
+                    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+                });
+            }
+        }
+    });
+
+    gsap.utils.toArray(".img-container.right img").forEach((img) => {
+        gsap.to(img, {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+            scrollTrigger: {
+                trigger: img,
+                start: "top 75%",
+                end: "bottom 70%",
+                scrub: true,
+            },
+        });
+    });
+
+    gsap.utils.toArray(".img-container.left img").forEach((img) => {
+        gsap.to(img, {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+            scrollTrigger: {
+                trigger: img,
+                start: "top 75%",
+                end: "bottom 70%",
+                scrub: true,
+            },
+        });
+    });
+
+    gsap.utils.toArray(".img-container p").forEach((text) => {
+        gsap.from(text, {
+            opacity: 0,
+            y: 20,
+            scrollTrigger: {
+                trigger: text,
+                start: "top 70%",
+                toggleActions: "play none none repeat",
+            },
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+[
+    {
+        "id":"1",
+        "name":"M79 Automatic 40mm Synthetic Rubber Strap Watch",
+        "price":"200",
+        "image":"./Images/w1.webp"
+    },
+    {
+        "id":"2",
+        "name":"M79 Automatic x Peanuts 40mm Stainless Steel Bracelet Watch",
+        "price":"299",
+        "image":"./Images/w2.webp"
+    },
+    {
+        "id":"3",
+        "name":"Waterbury Traditional Fly Back Chronograph 43mm Leather Strap Watch",
+        "price":"200",
+        "image":"./Images/w3.webp"
+    },
+    {
+        "id":"4",
+        "name":"Waterbury Traditional Fly Back Chronograph 43mm Stainless Steel Bracelet Watch",
+        "price":"210",
+        "image":"./Images/w4.webp"
+    },
+    {
+        "id":"5",
+        "name":"Timex Legacy Tonneau 42mm Leather Strap Watch",
+        "price":"210",
+        "image":"./Images/w5.webp"
+    },
+    {
+        "id":"6",
+        "name":"Timex Legacy Tonneau 42mm Leather Strap Watch",
+        "price":"210",
+        "image":"./Images/w6.webp"
+    },
+    {
+        "id":"7",
+        "name":"Timex Legacy Tonneau 42mm Fabric Strap Watch",
+        "price":"210",
+        "image":"./Images/w7.webp"
+    },
+    {
+        "id":"8",
+        "name":"Timex x The James Brand Automatic GMT 41mm Titanium Bracelet Watch Box Set",
+        "price":"210",
+        "image":"./Images/w8.webp"
+    },
+    {
+        "id":"9",
+        "name":"Timex Marlin® Automatic x Peanuts Snoopy Flying Ace 40mm Leather Strap Watch",
+        "price":"210",
+        "image":"./Images/w9.webp"
+    },
+    {
+        "id":"10",
+        "name":"Timex Marlin® Automatic x Peanuts Snoopy Flying Ace 40mm Leather Strap Watch",
+        "price":"210",
+        "image":"./Images/w10.webp"
+    },
+    {
+        "id":"11",
+        "name":"Waterbury Traditional Chronograph 42mm Stainless Steel Bracelet Watch",
+        "price":"300",
+        "image":"./Images/w11.webp"
+    },
+    {
+        "id":"12",
+        "name":"Waterbury Traditional Chronograph 42mm Leather Strap Watch",
+        "price":"210",
+        "image":"./Images/w12.webp"
+    },
+    {
+        "id":"13",
+        "name":"Q Timex 1978 Day/Date 37.5 mm Leather Strap Watch",
+        "price":"210",
+        "image":"./Images/w13.webp"
+    },
+    {
+        "id":"14",
+        "name":"Marlin® Chronograph Tachymeter 40mm Leather Strap Watch",
+        "price":"210",
+        "image":"./Images/w14.webp"
+    },
+    {
+        "id":"15",
+        "name":"Timex Marlin® Automatic x Peanuts Snoopy Flying Ace 40mm Leather Strap Watch",
+        "price":"210",
+        "image":"./Images/w15.webp"
+    }
+    
+]

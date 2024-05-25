@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+        * {
+        }
+        
+        /* html {
+            background-color: rgb(0, 0, 0);
+        } */
+        
+        body {
+            
+            background-image: url('../i19-1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+
+        .profile-info {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .edit-profile-btn {
+            background-color: #ebebeb;
+            /* color: #fff; */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+
+        .outer {
+            height: 100vh;
+            width: 100%;
+            /* background-color: beige; */
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .outer span{
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .profile-container h2 {
+            font-family: "Roboto", sans-serif;
+            font-size: 50px;
+            color: white;
+            /* font-weight: 700; */
+        }
+
+        .profile-info span {
+            color: #fff;
+            /* font-size: 22px; */
+        }
+
+        .profile-info {
+            font-size: 22px;
+        }
+
+        .profile-container {
+            margin-top: 150px;
+            margin-bottom: 200px;
+            background-color: #000000c3;
+            height: 500px;
+            width: 80vw;
+
+
+        }
+
+        .profilediv {
+            margin-top: 40px;
+            display: flex;
+        }
+
+        .profiledivleft {
+            width: 50vw;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profiledivright {
+            width: 50vw;
+        }
+
+        #profileName {
+            padding-left: 0px;
+        }
+
+        .ll1 {
+            margin-left: 270px;
+            font-size: 22px;
+        }
+
+        .all1 {
+            margin-left: 120px;
+            font-size: 22px;
+        }
+
+        #lm1 {
+            margin-left: 108px;
+            font-size: 22px;
+        }
+
+        #lm2 {
+            margin-left: 103px;
+            font-size: 22px;
+        }
+
+        #lm3 {
+            margin-left: 65px;
+            font-size: 22px;
+        }
+
+        #lm4 {
+            margin-left: 11px;
+            font-size: 22px;
+        }
+
+        #alm1 {
+            margin-left: 100px;
+            font-size: 22px;
+            color: black;
+        }
+
+        #alm2 {
+            margin-left: 97px;
+            font-size: 22px;
+            color: black;
+        }
+
+        #alm3 {
+            margin-left: 61px;
+            font-size: 22px;
+            color: black;
+        }
+
+        #alm4 {
+            color: black;
+            margin-left: 11px;
+            font-size: 22px;
+        }
+
+        .lr1 {
+            color: black;
+            margin-left: 30px;
+            font-size: 15px;
+            width: 18vw;
+            padding-top: 5px;
+            padding-bottom: 10px;
+            padding-left: 5px;
+        }
+
+        .profilediv span {
+            font-size: 22px;
+        }
+
+        .rl1 {
+            margin-left: 100px;
+            font-size: 22px;
+            /* width: 1000px; */
+        }
+
+        #rm1 {
+            margin-left: 14px;
+            font-size: 22px;
+        }
+
+        #rm2 {
+            margin-left: 40px;
+            font-size: 22px;
+        }
+
+
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+
+
+        .popup-content {
+            position: absolute;
+            width: 80vw;
+            height: 510px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            /* padding: 20px; */
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .popup-content h2 {
+            /* position: absolute; */
+            font-size: 50px;
+            /* margin-top: -15px; */
+        }
+
+        .popupouterdiv {
+            margin-top: 20px;
+            width: 80vw;
+            /* background-color: aqua; */
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .blk {
+            color: black;
+        }
+
+        .profiledivright .profile-info .blk {
+            color: #000000;
+        }
+
+        .lrbtn {
+            display: flex;
+            justify-content: space-around;
+            width: 20vw;
+        }
+        #a2{
+            margin-left:27px;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-1 bar"></div>
+            <div class="loader-2 bar"></div>
+        </div>
+
+        <div class="counter">
+            <div class="counter-1 digit">
+                <div class="num">0</div>
+                <div class="num num1offset1">1</div>
+            </div>
+            <div class="counter-2 digit">
+                <div class="num">0</div>
+                <div class="num num1offset2">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+                <div class="num">0</div>
+            </div>
+            <div class="counter-3 digit">
+                <div class="num">0</div>
+                <div class="num">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+            </div>
+            <div class="percent">%</div>
+        </div>
+    </div>
+
+
+
+    <header>
+        <a href="#" class="logo1"><img src="./Images/logo.png"></a>
+        <ul class="hover">
+            <li><a href="main.html" class="h1">HOME</a></li>
+            <li><a href="categories.html">CATEGORIES</a></li>
+            <li><a href="Exclusivepage.html">EXCLUSIVE</a></li>
+            <li><a href="watches.html">SHOP NOW</a></li>
+            <li><a href="main.html#contactus">CONTACT US</a></li>
+            <li><a href="ss.html">LOG IN</a></li>
+            <div class="dropdown">
+                <button class="dropbtn">PROFILE
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <h4>
+                    <script>
+                      document.write(localStorage.getItem("name"));
+                    </script>
+                  </h4>
+                  <a href="profilemain.html">Edit Profile</a>
+                  <p onclick="logOut()">Log Out</p>
+                </div>
+              </div>
+        </ul>
+    </header>
+
+    <div class="outer">
+        <div class="profile-container">
+            <h2>User Profile</h2>
+            <div class="profilediv">
+                <div class="profiledivleft">
+                    <div class="profile-info">
+                        <span class="ll1">Name</span> <span id="lm1">:</span> <span id="profileName" class="lr1"></span>
+                    </div>
+                    <div class="profile-info">
+                        <span class="ll1">Email: </span> <span id="lm2">:</span> <span id="profileEmail"
+                            class="lr1"></span>
+                    </div>
+                    <div class="profile-info">
+                        <span class="ll1">Password</span> <span id="lm3">:</span> <span id="profilePassword" class="lr1"
+                            id="temp">*****</span>
+                    </div>
+                    <div class="profile-info">
+                        <span class="ll1">Phone Number </span> <span id="lm4">:</span> <span id="profilePhoneNumber"
+                            class="lr1"></span>
+                    </div>
+                </div>
+                <div class="profiledivright">
+                    <div class="profile-info">
+                        <span class="rl1">Country </span> <span id="rm1">:</span> <span id="profileCountry"
+                            class="lr1"></span>
+                    </div>
+                    <div class="profile-info">
+                        <span class="rl1">State </span> <span id="rm2">:</span> <span id="profileState"
+                            class="lr1"></span>
+                    </div>
+                    <div class="profile-info">
+                        <span class="rl1">Pincode </span> <span id="lm4">:</span> <span id="profilePincode"
+                            class="lr1"></span>
+                    </div>
+                    <div class="profile-info">
+                        <span class="rl1">Address </span> <span id="lm4">:</span> <span id="profileAddress"
+                            class="lr1"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="lrbtn">
+                <button id="editProfileBtn" class="edit-profile-btn">Edit Profile</button>
+                <button class="edit-profile-btn" onclick="logOut()">Log Out</button>
+            </div>
+            <button id="saveProfileBtn" class="edit-profile-btn" style="display: none;">Sav/e Changes</button>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="input-group">
+        <input type="text" class="input" required id="name"/>
+        <label for="name" class="input-label">Email Address</label>
+     </div> -->
+
+
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">X</span>
+            <h2>Edit Profile</h2>
+            <div class="popupouterdiv">
+                <div class="profiledivleft">
+                    <div class="profile-info">
+                        <label for="newProfileName" class="all1">Name<span id="alm1">:</span></label>
+                        <input type="text" id="newProfileName" class="lr1">
+                    </div>
+                    <div class="profile-info">
+                        <label for="newProfileEmail" class="all1">Email<span id="alm2">:</span></label>
+                        <input type="email" id="newProfileEmail" class="lr1">
+                    </div>
+                    <div class="profile-info">
+                        <label for="newProfilePassword" class="all1">Password<span id="alm3">:</span></label>
+                        <input type="password" id="newProfilePassword" placeholder="*****" class="lr1">
+                    </div>
+                    <div class="profile-info">
+                        <label for="newProfilePhoneNumber" class="all1">Phone Number<span id="alm4">:</span></label>
+                        <input type="text" id="newProfilePhoneNumber" class="lr1">
+                    </div>
+                </div>
+                <div class="profiledivright">
+                    <div class="profile-info">
+                        <label for="newProfileCountry" class="rl1">Country<span id="a1" class="blk">:</span></label>
+                        <input type="text" id="newProfileCountry" class="lr1">
+                    </div>
+                    <div class="profile-info">
+                        <label for="newProfileState" class="rl1">State<span id="a2" class="blk">:</span></label>
+                        <input type="text" id="newProfileState" class="lr1">
+                    </div>
+                    <div class="profile-info">
+                        <label for="newProfilePincode" class="rl1">Pincode<span id="a3" class="blk">:</span></label>
+                        <input type="text" id="newProfilePincode" class="lr1">
+                    </div>
+                    <div class="profile-info">
+                        <label for="newProfileAddress" class="rl1">Address<span id="a4" class="blk">:</span></label>
+                        <input type="text" id="newProfileAddress" class="lr1">
+                    </div>
+                </div>
+            </div>
+            <button class="edit-profile-btn" onclick="saveChanges()">Save Changes</button>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+        integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"
+        integrity="sha512-AMl4wfwAmDM1lsQvVBBRHYENn1FR8cfOTpt8QVbb/P55mYOdahHD4LmHM1W55pNe3j/3od8ELzPf/8eNkkjISQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
+        integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"
+        integrity="sha512-tHvUcUQYi35zApvAa5TNR3fNhBQkVtkmWKfacnpxmix4/VTGz1lGjIVyLMp7gLgAvg+aKJjnVKokXJNS5GZ+/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+
+    <script>
+
+        function logOut() {
+            // document.getElementById("#temp").style.display = "none"
+            localStorage.removeItem("name");
+            localStorage.removeItem("email");
+            window.location.href = "ss.html";
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            loadProfile(); // Load profile information on page load
+        });
+
+        function loadProfile() {
+            var name = localStorage.getItem('name');
+            var email = localStorage.getItem('email');
+            var phoneNumber = localStorage.getItem('phone            Number') || '';
+            var country = localStorage.getItem('country') || '';
+            var state = localStorage.getItem('state') || '';
+            var pincode = localStorage.getItem('pincode') || '';
+            var address = localStorage.getItem('address') || '';
+
+            // Set profile name, email, and other fields
+            document.getElementById('profileName').textContent = name;
+            document.getElementById('profileEmail').textContent = email;
+            document.getElementById('profilePhoneNumber').textContent = phoneNumber;
+            document.getElementById('profileCountry').textContent = country;
+            document.getElementById('profileState').textContent = state;
+            document.getElementById('profilePincode').textContent = pincode;
+            document.getElementById('profileAddress').textContent = address;
+
+            // Show a placeholder text for the password instead of the actual password
+            document.getElementById('profilePassword').textContent = ""; // Placeholder text
+        }
+
+        // Open edit profile pop-up
+        document.getElementById('editProfileBtn').addEventListener('click', function () {
+            openPopup();
+        });
+
+        // Save changes to profile
+        function saveChanges() {
+            var newName = document.getElementById('newProfileName').value;
+            var newEmail = document.getElementById('newProfileEmail').value;
+            var newPassword = document.getElementById('newProfilePassword').value;
+            var newPhoneNumber = document.getElementById('newProfilePhoneNumber').value;
+            var newCountry = document.getElementById('newProfileCountry').value;
+            var newState = document.getElementById('newProfileState').value;
+            var newPincode = document.getElementById('newProfilePincode').value;
+            var newAddress = document.getElementById('newProfileAddress').value;
+
+            // Retrieve the existing array of user data from local storage
+            var userRecords = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Find the index of the user data object within the array that matches the current user's email
+            var userIndex = userRecords.findIndex(user => user.email === localStorage.getItem('email'));
+
+            // Update the name, email, password, and other fields of the matched user data object with the new values
+            if (userIndex !== -1) {
+                userRecords[userIndex].name = newName;
+                userRecords[userIndex].email = newEmail;
+                userRecords[userIndex].password = newPassword;
+                userRecords[userIndex].phoneNumber = newPhoneNumber;
+                userRecords[userIndex].country = newCountry;
+                userRecords[userIndex].state = newState;
+                userRecords[userIndex].pincode = newPincode;
+                userRecords[userIndex].address = newAddress;
+            }
+
+            // Save the updated array back to local storage
+            localStorage.setItem('users', JSON.stringify(userRecords));
+
+            // Update the individual user data in local storage
+            localStorage.setItem('name', newName);
+            localStorage.setItem('email', newEmail);
+            localStorage.setItem('userpswd', newPassword);
+            localStorage.setItem('phoneNumber', newPhoneNumber);
+            localStorage.setItem('country', newCountry);
+            localStorage.setItem('state', newState);
+            localStorage.setItem('pincode', newPincode);
+            localStorage.setItem('address', newAddress);
+
+            // Update profile information on the page
+            document.getElementById('profileName').textContent = newName;
+            document.getElementById('profileEmail').textContent = newEmail;
+            document.getElementById('profilePhoneNumber').textContent = newPhoneNumber;
+            document.getElementById('profileCountry').textContent = newCountry;
+            document.getElementById('profileState').textContent = newState;
+            document.getElementById('profilePincode').textContent = newPincode;
+            document.getElementById('profileAddress').textContent = newAddress;
+
+            // Show a placeholder text for the password instead of the actual password
+            document.getElementById('profilePassword').textContent = "********"; // Placeholder text
+
+            // Close the pop-up
+            closePopup();
+        }
+
+        // Open pop-up
+        function openPopup() {
+            // Populate the input fields in the pop-up with the current data
+            document.getElementById('newProfileName').value = localStorage.getItem('name') || '';
+            document.getElementById('newProfileEmail').value = localStorage.getItem('email') || '';
+            document.getElementById('newProfilePassword').value = localStorage.getItem('userpswd') || '';
+            document.getElementById('newProfilePhoneNumber').value = localStorage.getItem('phoneNumber') || '';
+            document.getElementById('newProfileCountry').value = localStorage.getItem('country') || '';
+            document.getElementById('newProfileState').value = localStorage.getItem('state') || '';
+            document.getElementById('newProfilePincode').value = localStorage.getItem('pincode') || '';
+            document.getElementById('newProfileAddress').value = localStorage.getItem('address') || '';
+
+            // Display the pop-up
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        // Close pop-up
+        function closePopup() {
+            // Hide the pop-up
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Function to clear local storage upon logout
+        function logout() {
+            localStorage.clear();
+            // Redirect to the login page or any other desired action
+            window.location.href = 'login.html'; // Change 'login.html' to the appropriate URL
+        }
+    </script>
+
+</body>
+
+</html>
